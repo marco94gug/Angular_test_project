@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Hero } from '../types/hero';
-import { heroesMock } from '../heroes-mock';
+import { HeroService } from '../hero.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-eroi',
@@ -77,7 +78,8 @@ import { heroesMock } from '../heroes-mock';
   ],
 })
 export class EroiComponent {
-  heroes: Hero[] = heroesMock;
+  heroes: Hero[] | undefined;
+  subscriptions: Subscription | undefined;
 
   selectedHero: Hero | undefined;
 
@@ -85,9 +87,17 @@ export class EroiComponent {
     this.selectedHero = hero;
   }
 
-  constructor() {
+  constructor(private heroService: HeroService) {
     this.selectedHero = undefined;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscriptions = this.heroService
+      .getHeroes()
+      .subscribe((heroes) => (this.heroes = heroes));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions?.unsubscribe();
+  }
 }
