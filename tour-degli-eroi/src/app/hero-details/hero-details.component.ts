@@ -3,8 +3,17 @@ import { Hero } from '../hero';
 
 @Component({
   selector: 'app-hero-details',
-  templateUrl: './hero-details.component.html',
-  styleUrls: ['./hero-details.component.scss'],
+  template: `
+    <div *ngIf="heroDetails">
+      <h2>Details of {{ heroDetails.name | uppercase }}:</h2>
+      <div><span>Id:</span> {{ heroDetails.id }}</div>
+      <div><span>Name:</span> {{ heroDetails.name }}</div>
+      <label for="name">
+        <input type="text" id="name" [(ngModel)]="heroDetails.name" />
+      </label>
+    </div>
+  `,
+  styles: [``],
 })
 export class HeroDetailsComponent {
   @Input() heroDetails: Hero | undefined;
