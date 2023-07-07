@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <h1>{{ title }}</h1>
     <app-eroi></app-eroi>
+    <app-notify></app-notify>
   `,
   styles: [``],
 })

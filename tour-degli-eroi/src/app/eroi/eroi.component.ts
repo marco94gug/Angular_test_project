@@ -78,18 +78,16 @@ import { Subscription } from 'rxjs';
   ],
 })
 export class EroiComponent {
-  heroes: Hero[] | undefined;
-  subscriptions: Subscription | undefined;
+  heroes?: Hero[];
+  subscriptions?: Subscription;
 
-  selectedHero: Hero | undefined;
+  selectedHero?: Hero;
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
 
-  constructor(private heroService: HeroService) {
-    this.selectedHero = undefined;
-  }
+  constructor(private heroService: HeroService) {}
 
   ngOnInit(): void {
     this.subscriptions = this.heroService
