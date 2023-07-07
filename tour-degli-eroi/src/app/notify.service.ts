@@ -10,7 +10,7 @@ export class NotifyService {
     this.notifications.push(notice);
   }
 
-  cancelAll(): void {
+  clearAll(): void {
     this.notifications = [];
   }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Hero } from '../types/hero';
 import { HeroService } from '../hero.service';
 import { Subscription } from 'rxjs';
+import { NotifyService } from '../notify.service';
 
 @Component({
   selector: 'app-eroi',
@@ -85,9 +86,13 @@ export class EroiComponent {
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+    this.notify.add(`Added Hero ID: ${hero.id}`);
   }
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    private notify: NotifyService
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions = this.heroService
