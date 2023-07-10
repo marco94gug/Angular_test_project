@@ -4,10 +4,21 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <h1>{{ title }}</h1>
-    <app-eroi></app-eroi>
+    <nav class="navbar">
+      <a routerLink="./">Home</a>
+      <a routerLink="/heroes">Heroes</a>
+    </nav>
+    <router-outlet></router-outlet>
     <app-notify></app-notify>
   `,
-  styles: [``],
+  styles: [
+    `
+      .navbar {
+        display: flex;
+        gap: 10px;
+      }
+    `,
+  ],
 })
 export class AppComponent {
   title = 'tour-degli-eroi';
