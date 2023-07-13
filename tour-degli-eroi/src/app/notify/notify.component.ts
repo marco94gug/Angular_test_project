@@ -4,12 +4,14 @@ import { NotifyService } from '../notify.service';
 @Component({
   selector: 'app-notify',
   template: `
-    <h2>Notifications:</h2>
-    <button class="clear" (click)="notify.clearAll()">
-      Clear Notifications
-    </button>
-    <div *ngFor="let notification of notify.notifications">
-      {{ notification }}
+    <div *ngIf="notify.notifications.length > 0">
+      <h2>Notifications:</h2>
+      <button class="clear" (click)="notify.clearAll()">
+        Clear Notifications
+      </button>
+      <div *ngFor="let notification of notify.notifications">
+        {{ notification }}
+      </div>
     </div>
   `,
   styles: [

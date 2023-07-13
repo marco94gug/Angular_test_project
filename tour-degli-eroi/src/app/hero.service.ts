@@ -15,5 +15,13 @@ export class HeroService {
     return of(heroesMock);
   }
 
+  getHero(id: number): Observable<Hero> {
+    this.notify.add('Hero Added!' + id);
+
+    const hero = heroesMock.find((hero) => hero.id === id);
+
+    return of(hero!);
+  }
+
   constructor(private notify: NotifyService) {}
 }

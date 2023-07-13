@@ -14,11 +14,12 @@ import { NotifyService } from '../notify.service';
         *ngFor="let hero of heroes"
         (click)="onSelect(hero)"
       >
-        <span class="badge">{{ hero.id }}</span>
-        {{ hero.name }}
+        <a routerLink="/details/{{ hero.id }}">
+          <span class="badge">{{ hero.id }}</span>
+          {{ hero.name }}
+        </a>
       </li>
     </ul>
-    <app-hero-details [heroDetails]="selectedHero"></app-hero-details>
   `,
   styles: [
     `
@@ -28,35 +29,39 @@ import { NotifyService } from '../notify.service';
         padding: 0;
         width: 15em;
         li {
-          cursor: pointer;
-          position: relative;
-          display: flex;
-          align-items: center;
-          left: 0;
-          background-color: #eee;
-          margin: 0.5em;
-          padding: 0.3em 0;
-          height: 1.6em;
-          border-radius: 4px;
+          a {
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            left: 0;
+            background-color: #eee;
+            margin: 0.5em;
+            padding: 0.3em 0;
+            height: 1.6em;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #444;
+
+            &:hover {
+              color: #607d8b;
+              background-color: #ddd;
+              left: 0.1em;
+            }
+
+            &.selected {
+              background-color: #cfd8dc;
+              color: white;
+
+              &:hover {
+                background-color: #bbd8dc;
+                color: white;
+              }
+            }
+          }
 
           span {
             align-self: flex-start;
-          }
-
-          &:hover {
-            color: #607d8b;
-            background-color: #ddd;
-            left: 0.1em;
-          }
-
-          &.selected {
-            background-color: #cfd8dc;
-            color: white;
-
-            &:hover {
-              background-color: #bbd8dc;
-              color: white;
-            }
           }
         }
 
